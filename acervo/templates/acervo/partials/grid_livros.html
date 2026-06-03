@@ -1,0 +1,42 @@
+{% for livro in livros %}
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-300 flex flex-col">
+    <div class="p-5 flex-grow">
+        <div class="flex justify-between items-start mb-2">
+            <h3 class="font-bold text-lg text-slate-900 leading-tight">{{ livro.titulo }}</h3>
+        </div>
+        <p class="text-sm text-gray-500 mb-4 flex items-center gap-1">
+            <i data-lucide="user" class="w-4 h-4"></i> {{ livro.autor }}
+        </p>
+        
+        <div class="space-y-1">
+            <p class="text-xs text-gray-400">ISBN: <span class="text-gray-600">{{ livro.isbn }}</span></p>
+            <p class="text-xs text-gray-400">Editora: <span class="text-gray-600">{{ livro.editora }}</span></p>
+        </div>
+    </div>
+    
+    <div class="bg-gray-50 px-5 py-3 border-t border-gray-100">
+        {% if livro.disponivel %}
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+                Disponível
+            </span>
+        {% else %}
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                <span class="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
+                Emprestado
+            </span>
+        {% endif %}
+    </div>
+</div>
+{% empty %}
+<div class="col-span-full py-12 text-center">
+    <i data-lucide="book-x" class="mx-auto h-12 w-12 text-gray-300 mb-3"></i>
+    <p class="text-gray-500 text-lg">Nenhum livro encontrado no acervo.</p>
+</div>
+{% endfor %}
+
+<script>
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+</script>
