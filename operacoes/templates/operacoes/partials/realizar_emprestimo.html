@@ -1,0 +1,83 @@
+<!-- Template para criar criar emprestimos -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo Empréstimo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-gray-50 font-sans text-slate-800 min-h-screen">
+    
+    <nav class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <i data-lucide="plus-circle" class="text-blue-600"></i>
+                <span class="font-bold text-xl tracking-tight text-slate-900">Registrar Saída</span>
+            </div>
+            <div>
+                <a href="{% url 'operacoes:painel_emprestimos' %}" class="text-sm font-medium text-gray-500 hover:text-blue-600 flex items-center gap-1 transition-colors">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i> Voltar ao Painel
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-2xl mx-auto py-12 px-4 sm:px-6">
+        <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
+            
+            <div class="mb-6 border-b border-gray-100 pb-4">
+                <h2 class="text-2xl font-bold flex items-center gap-2 text-slate-900">
+                    <i data-lucide="arrow-right-left" class="text-blue-600"></i> Novo Empréstimo
+                </h2>
+                <p class="text-sm text-gray-500 mt-2">Selecione o usuário e o exemplar disponível no acervo.</p>
+            </div>
+
+            {% if erro %}
+            <div class="mb-6 bg-red-50 border-l-4 border-red-500 p-4 rounded-r-md flex items-start gap-3">
+                <i data-lucide="alert-octagon" class="text-red-500 w-5 h-5 shrink-0 mt-0.5"></i>
+                <p class="text-sm text-red-700 font-medium">{{ erro }}</p>
+            </div>
+            {% endif %}
+
+            <form method="POST" action="{% url 'operacoes:realizar_emprestimo' %}" class="space-y-6">
+                {% csrf_token %}
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-900 mb-2 flex items-center gap-2">
+                        <i data-lucide="user" class="w-4 h-4 text-gray-400"></i> Selecionar Usuário
+                    </label>
+                    <select name="usuario_id" required class="block w-full rounded-md border-0 py-2.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-blue-600 sm:text-sm shadow-sm bg-white">
+                        <option value="" disabled selected>Escolha um usuário matriculado...</option>
+                        {% for usuario in usuarios %}
+                            <option value="{{ usuario.id }}">{{ usuario.nome }} (Matrícula: {{ usuario.matricula }})</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-900 mb-2 flex items-center gap-2">
+                        <i data-lucide="book" class="w-4 h-4 text-gray-400"></i> Selecionar Livro
+                    </label>
+                    <select name="livro_id" required class="block w-full rounded-md border-0 py-2.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-blue-600 sm:text-sm shadow-sm bg-white">
+                        <option value="" disabled selected>Escolha um livro disponível...</option>
+                        {% for livro in livros %}
+                            <option value="{{ livro.id }}">{{ livro.titulo }} (ISBN: {{ livro.isbn }})</option>
+                        {% empty %}
+                            <option value="" disabled>Nenhum livro disponível no momento.</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="mt-8 flex items-center justify-end gap-x-4 border-t border-gray-100 pt-5">
+                    <a href="{% url 'operacoes:painel_emprestimos' %}" class="text-sm font-semibold text-gray-900 hover:text-gray-600 transition-colors">Cancelar</a>
+                    <button type="submit" class="inline-flex items-center gap-2 rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 transition-colors">
+                        <i data-lucide="check" class="w-4 h-4"></i> Confirmar Empréstimo
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
