@@ -20,4 +20,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls), # Acesso do Bibliotecário
     path('', include('acervo.urls')), # Rota pública para a biblioteca
+    path('usuarios/', include('usuarios.urls')), # Rota para gerenciamento de usuários
+    path('operacoes/', include('operacoes.urls')), # Rota para operações de empréstimo e devolução
 ]
