@@ -1,0 +1,39 @@
+{% for usuario in usuarios %}
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 flex flex-col hover:shadow-md transition-shadow">
+    <div class="flex justify-between items-start mb-4">
+        <div class="flex items-center gap-3">
+            <div class="bg-blue-50 p-2 rounded-full">
+                <i data-lucide="{% if usuario.tipo_usuario == 'Professor' %}graduation-cap{% else %}user{% endif %}" class="w-6 h-6 text-blue-600"></i>
+            </div>
+            <div>
+                <h3 class="font-bold text-slate-900 leading-tight">{{ usuario.nome }}</h3>
+                <span class="text-xs font-medium text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100">
+                    {{ usuario.tipo_usuario }}
+                </span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="space-y-2 text-sm text-gray-500 flex-grow mb-4">
+        <p class="flex items-center gap-2"><i data-lucide="hash" class="w-4 h-4"></i> {{ usuario.matricula }}</p>
+        <p class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4"></i> {{ usuario.email }}</p>
+    </div>
+    
+    <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+        <div class="flex gap-2">
+            <a href="{% url 'usuarios:editar_usuario' usuario.id %}" class="text-gray-400 hover:text-blue-600 transition-colors p-1" title="Editar">
+                <i data-lucide="edit-3" class="w-4 h-4"></i>
+            </a>
+            <button hx-get="{% url 'usuarios:excluir_usuario' usuario.id %}" hx-target="#modal-container" class="text-gray-400 hover:text-red-600 transition-colors p-1" title="Excluir">
+                <i data-lucide="trash-2" class="w-4 h-4"></i>
+            </button>
+        </div>
+    </div>
+</div>
+{% empty %}
+<div class="col-span-full py-12 text-center text-gray-500">
+    <i data-lucide="users" class="mx-auto h-12 w-12 text-gray-300 mb-3"></i>
+    <p>Nenhum usuário encontrado.</p>
+</div>
+{% endfor %}
+<script>if (typeof lucide !== 'undefined') { lucide.createIcons(); }</script>
