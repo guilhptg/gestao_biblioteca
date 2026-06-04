@@ -14,19 +14,33 @@
         </div>
     </div>
     
-    <div class="bg-gray-50 px-5 py-3 border-t border-gray-100">
-        {% if livro.disponivel %}
-            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
-                Disponível
-            </span>
-        {% else %}
-            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                <span class="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
-                Emprestado
-            </span>
-        {% endif %}
+    <div class="bg-gray-50 px-5 py-3 border-t border-gray-100 flex items-center justify-between">
+        <div>
+            {% if livro.disponivel %}
+                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+                    Disponível
+                </span>
+            {% else %}
+                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                    <span class="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
+                    Emprestado
+                </span>
+            {% endif %}
+        </div>
+
+        <div class="flex items-center gap-2">
+            <a href="{% url 'acervo:editar_livro' livro.id %}" 
+               class="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors" title="Editar Livro">
+                <i data-lucide="edit-3" class="w-4 h-4"></i>
+            </a>
+            <a href="{% url 'acervo:excluir_livro' livro.id %}" 
+               class="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-md transition-colors" title="Excluir Livro">
+                <i data-lucide="trash-2" class="w-4 h-4"></i>
+            </a>
+        </div>
     </div>
+
 </div>
 {% empty %}
 <div class="col-span-full py-12 text-center">

@@ -22,6 +22,12 @@
                     <i data-lucide="lock" class="w-4 h-4"></i> Acesso Restrito
                 </a>
             </div>
+            <div>
+                <a href="{% url 'usuarios:painel_usuarios' %}" class="text-sm font-medium text-gray-500 hover:text-blue-600 flex items-center gap-1 transition-colors">
+                    <i data-lucide="users" class="w-4 h-4"></i> Usuários
+                </a>
+            </div>
+
         </div>
     </nav>
 
@@ -47,6 +53,15 @@
             </div>
         </div>
 
+        <!-- Botão para modal de adiconar novo livro -->
+        <div class="mb-6 text-right">
+            <a href="{% url 'acervo:adicionar_livro' %}" 
+               class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                <i data-lucide="plus" class="w-4 h-4"></i> Adicionar Novo Livro
+            </a>
+        </div>
+
+        <!-- Grid de resultados -->
         <div id="grid-resultados" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {% include 'acervo/partials/grid_livros.html' %}
         </div>

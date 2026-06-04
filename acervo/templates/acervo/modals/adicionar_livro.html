@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Livro - Biblioteca</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-gray-50 font-sans text-slate-800 min-h-screen flex flex-col">
+
+    <nav class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <i data-lucide="library" class="text-blue-600"></i>
+                <span class="font-bold text-xl tracking-tight text-slate-900">Biblioteca Acadêmica</span>
+            </div>
+            <div>
+                <a href="{% url 'acervo:catalogo' %}" class="text-sm font-medium text-gray-500 hover:text-blue-600 flex items-center gap-1 transition-colors">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i> Voltar ao Acervo
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-xl w-full bg-white p-8 rounded-xl shadow-sm border border-gray-200">
+            
+            <div class="mb-8 border-b border-gray-100 pb-5">
+                <h2 class="text-2xl font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="book-plus" class="text-blue-600"></i> Adicionar Novo Livro
+                </h2>
+                <p class="text-sm text-gray-500 mt-2">Preencha as informações abaixo para cadastrar um novo exemplar no sistema.</p>
+            </div>  
+
+            <form method="POST" action="{% url 'acervo:adicionar_livro' %}" class="space-y-5">
+                {% csrf_token %}
+                
+                <div>
+                    <label for="titulo" class="block text-sm font-medium leading-6 text-gray-900">Título do Livro</label>
+                    <div class="mt-1 relative rounded-md shadow-sm">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i data-lucide="type" class="text-gray-400 w-4 h-4"></i>
+                        </div>
+                        <input type="text" name="titulo" id="titulo" required
+                               class="block w-full pl-10 rounded-md border-0 py-2 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-blue-600 sm:text-sm sm:leading-6" 
+                               placeholder="Ex: Engenharia de Software Moderno">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="autor" class="block text-sm font-medium leading-6 text-gray-900">Autor</label>
+                    <div class="mt-1 relative rounded-md shadow-sm">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i data-lucide="user" class="text-gray-400 w-4 h-4"></i>
+                        </div>
+                        <input type="text" name="autor" id="autor" required
+                               class="block w-full pl-10 rounded-md border-0 py-2 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-blue-600 sm:text-sm sm:leading-6" 
+                               placeholder="Ex: Marco Tulio Valente">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                        <label for="isbn" class="block text-sm font-medium leading-6 text-gray-900">ISBN</label>
+                        <div class="mt-1 relative rounded-md shadow-sm">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i data-lucide="barcode" class="text-gray-400 w-4 h-4"></i>
+                            </div>
+                            <input type="text" name="isbn" id="isbn" required maxlength="13"
+                                   class="block w-full pl-10 rounded-md border-0 py-2 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-blue-600 sm:text-sm sm:leading-6" 
+                                   placeholder="Apenas números">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="ano_publicacao" class="block text-sm font-medium leading-6 text-gray-900">Ano de Publicação</label>
+                        <div class="mt-1 relative rounded-md shadow-sm">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i data-lucide="calendar" class="text-gray-400 w-4 h-4"></i>
+                            </div>
+                            <input type="number" name="ano_publicacao" id="ano_publicacao" required min="1500" max="2100"
+                                   class="block w-full pl-10 rounded-md border-0 py-2 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-blue-600 sm:text-sm sm:leading-6" 
+                                   placeholder="Ex: 2020">
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="editora" class="block text-sm font-medium leading-6 text-gray-900">Editora</label>
+                    <div class="mt-1 relative rounded-md shadow-sm">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i data-lucide="building" class="text-gray-400 w-4 h-4"></i>
+                        </div>
+                        <input type="text" name="editora" id="editora" required
+                               class="block w-full pl-10 rounded-md border-0 py-2 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-blue-600 sm:text-sm sm:leading-6" 
+                               placeholder="Ex: Novatec">
+                    </div>
+                </div>
+
+                <div class="mt-8 flex items-center justify-end gap-x-4 border-t border-gray-100 pt-5">
+                    <a href="{% url 'acervo:catalogo' %}" class="text-sm font-semibold leading-6 text-gray-900 hover:text-gray-600 transition-colors">
+                        Cancelar
+                    </a>
+                    <button type="submit" class="inline-flex items-center gap-2 rounded-md bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors">
+                        <i data-lucide="save" class="w-4 h-4"></i> Salvar Livro
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
