@@ -25,7 +25,7 @@ O objetivo deste software é fornecer uma interface fluida e intuitiva para o ge
 ---
 
 <details>
-  <summary>📸 Clique para ver as capturas de tela do sistema</summary>
+  <summary><h2>📸 Clique para ver as capturas de tela do sistema</h2></summary>
   <br>
 
   <p align="center">
