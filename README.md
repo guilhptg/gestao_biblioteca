@@ -24,6 +24,55 @@ O objetivo deste software é fornecer uma interface fluida e intuitiva para o ge
 
 ---
 
+<details>
+  <summary>📸 Clique para ver as capturas de tela do sistema</summary>
+  <br>
+
+  <p align="center">
+    <img src="static/acervo.png" alt="Tela de listagem do acervo de livros" width="100%">
+    <br>
+    <em>Legenda: Visão geral do acervo, com opções para pesquisar, editar e excluir.</em>
+  </p>
+  <br>
+
+  <p align="center">
+    <img src="static/adicionar_livro.png" alt="Modal para adicionar novo livro" width="100%">
+    <br>
+    <em>Legenda: Modal dinâmico (carregado via HTMX) para cadastro de novos títulos.</em>
+  </p>
+  <br>
+
+  <p align="center">
+    <img src="static/emprestimos.png" alt="Painel de controle de empréstimos e devoluções" width="100%">
+    <br>
+    <em>Legenda: Gestão centralizada de empréstimos ativos, atrasados e histórico.</em>
+  </p>
+  <br>
+
+  <p align="center">
+    <img src="static/adicionar_emprestimo.png" alt="Painel de controle de empréstimos e devoluções" width="100%">
+    <br>
+    <em>Legenda: Gestão centralizada de empréstimos ativos, atrasados e histórico.</em>
+  </p>
+  <br>
+
+  <p align="center">
+    <img src="static/usuarios.png" alt="Modal para adicionar novo livro" width="100%">
+    <br>
+    <em>Legenda: Gestão centralizada de usuários cadastradis e ativos no sistema.</em>
+  </p>
+  <br>
+
+  <p align="center">
+    <img src="static/adicionar_usuario.png" alt="Modal para adicionar novo livro" width="100%">
+    <br>
+    <em>Legenda: Modal dinâmico (carregado via HTMX) para cadastro de novos usuários.</em>
+  </p>
+  <br>
+
+</details>
+
+---
 ## 🛠️ Tecnologias e Arquitetura
 
 Este projeto foi construído utilizando o conceito de **Hypermedia-Driven Application (HDA)**. Em vez de criar uma API REST pesada e um front-end SPA (Single Page Application) complexo, optei por uma abordagem mais pragmática e performática:
